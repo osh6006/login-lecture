@@ -1,5 +1,6 @@
 "use strict";
 
+const User = require("../../models/User");
 const UserStorage = require("../../models/UserStorage");
 
 // 보여주기
@@ -15,19 +16,23 @@ const output = {
 // 프론트에서 요청
 const process = {
   login: (req, res) => {
-    const id = req.body.id,
-      password = req.body.password;
+    const user = new User(req.body);
+    const response = user.login();
+    return res.json(response);
 
-    const users = UserStorage.getUsers("id", "password");
-    const response = {};
-    if (id === users.id && password === users.password) {
-      response.success = true;
-      return res.json(response);
-    } else {
-      response.success = false;
-      response.msg = "로그인에 실패하셨습니다.";
-      return res.json(response);
-    }
+    // const id = req.body.id,
+    //   password = req.body.password;
+
+    // const users = UserStorage.getUsers("id", "password");
+    // const response = {};
+    // if (id === users.id && password === users.password) {
+    //   response.success = true;
+    //   return res.json(response);
+    // } else {
+    //   response.success = false;
+    //   response.msg = "로그인에 실패하셨습니다.";
+    //   return res.json(response);
+    // }
   },
 };
 
