@@ -18,24 +18,15 @@ const output = {
 
 // 프론트에서 요청
 const process = {
-  login: (req, res) => {
+  login: async (req, res) => {
     const user = new User(req.body);
-    const response = user.login();
+    const response = await user.login();
     return res.json(response);
-
-    // const id = req.body.id,
-    //   password = req.body.password;
-
-    // const users = UserStorage.getUsers("id", "password");
-    // const response = {};
-    // if (id === users.id && password === users.password) {
-    //   response.success = true;
-    //   return res.json(response);
-    // } else {
-    //   response.success = false;
-    //   response.msg = "로그인에 실패하셨습니다.";
-    //   return res.json(response);
-    // }
+  },
+  register: (req, res) => {
+    const user = new User(req.body);
+    const response = user.register();
+    return res.json(response);
   },
 };
 
