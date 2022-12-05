@@ -1,12 +1,13 @@
 "use strict";
 
-const id = document.querySelector("#id"),
-  password = document.querySelector("#password"),
-  loginBtn = document.querySelector("button");
+const id = document.querySelector("#id");
+const password = document.querySelector("#password");
+const loginBtn = document.getElementById("loginBtn");
 
 loginBtn.addEventListener("click", login);
 
 function login(e) {
+  e.preventDefault();
   const req = {
     id: id.value,
     password: password.value,
