@@ -20,8 +20,13 @@ class User {
     return { success: false, msg: "존재하지 않는 아이디 입니다." };
   }
 
-  register() {
-    UserStorage.save(this.body);
+  async register() {
+    try {
+      const response = await UserStorage.save(this.body);
+      return response;
+    } catch (error) {
+      return { success: false, msg: error };
+    }
   }
 }
 
